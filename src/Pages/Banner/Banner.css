@@ -1,10 +1,26 @@
 .handleImage{
     height: 800px;
 }
+.handleBg{
+    background-color: rgba(48, 48, 48, 0.774);
+}
+
+
+/*for mobile version */
 
 @media screen and (max-width:440px) {
     .handleImage{
         max-width: 100%;
         height: auto;
+     }
+     .handleBg{
+        background-color: rgba(48, 48, 48, 0.411);
+        font-size: 5px
+    }
+    .handleTitle{
+        font-size: 10px
+    }
+    .handleDescrip{
+        font-size: 8px;
     }
 }
