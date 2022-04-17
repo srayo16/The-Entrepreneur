@@ -1,0 +1,10 @@
+.handleImage{
+    height: 800px;
+}
+
+@media screen and (max-width:440px) {
+    .handleImage{
+        max-width: 100%;
+        height: auto;
+    }
+}

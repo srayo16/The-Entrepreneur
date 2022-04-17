@@ -29,13 +29,13 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto d-flex align-items-center">
                             <CustomLink className= 'ps-3' to={'/home'}>Home</CustomLink>
-                            <CustomLink className='text-warning ps-3'  to={'/'}>
+                            <span className='text-warning ps-3 pe-3' style={{cursor: 'pointer'}}>
                             {
                                    user ? user.displayName : ''
                                }
-                               </CustomLink>
+                               </span>
                             {
-                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-dark'>Log Out</button> : <CustomLink className= 'ps-3' to="/login">Log in</CustomLink>
+                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-secondary'>Log Out</button> : <CustomLink className= 'ps-3' to="/login">Log in</CustomLink>
                             }
 
                             <CustomLink className= 'ps-3' to="/signup">Sign Up</CustomLink>
