@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../FirebasInit/Firebase.init';
 import Spinners from '../../Shared/Spinners/Spinners';
@@ -16,31 +16,47 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(
+        auth
+    );
     const navigate = useNavigate();
     const mail = useRef('');
     const pass = useRef('');
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
     let errormess;
-    if (error) {
-        return (
+    if (error || error2) {
+        (
             errormess = <p className='text-danger text-center fw-bolder'> Error:  {error ? error?.message : 'Something is wrong!'}</p>
 
         );
     }
-    if (loading ) {
+    if (loading || sending) {
         return <Spinners></Spinners>;
     }
-    if(user){
+    if (user) {
         navigate(from, { replace: true });
     }
-    const onsubLog = async event =>{
+    const onsubLog = async event => {
         event.preventDefault();
         const email = mail.current.value;
         const password = pass.current.value;
+        if (email && password) {
+            await signInWithEmailAndPassword(email, password);
+            toast('Logged in');
+        }
 
-       await signInWithEmailAndPassword(email, password);
-       toast('Logged in');
+    }
+    const resetPass = async event => {
+        const email = mail.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            alert('Email field empty!')
+        }
+
     }
     return (
         <div className='container mt-3'>
@@ -64,6 +80,7 @@ const Login = () => {
                     </Button>
                 </Form>
                 {errormess}
+                <button onClick={() => resetPass()} className=' btn btn-link rounded-pill text-decoration-none  text-danger fw-bolder handleSubBtn2'><span className='text-dark'>Forgot password?</span> Reset Password</button>
                 <Link to='/signup' className=' btn btn-link rounded-pill text-decoration-none handleSubBtn2 text-danger fw-bolder'>Are you new user?</Link>
                 <Social></Social>
                 <ToastContainer />

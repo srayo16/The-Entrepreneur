@@ -28,17 +28,19 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto d-flex align-items-center">
-                            <CustomLink className= 'ps-3' to={'/home'}>Home</CustomLink>
-                            <span className='text-warning ps-3 pe-3' style={{cursor: 'pointer'}}>
+                            <CustomLink className='ps-3' to={'/home'}>Home</CustomLink>
+                            <span className='text-warning ps-3' style={{ cursor: 'pointer' }}>
+                                {
+                                    user ? user.displayName : 'No user'
+                                }
+                            </span>
+                            <CustomLink className='ps-3' to={'/blogs'}>Blogs</CustomLink>
+                            <CustomLink className='ps-3' to={'/about'}>About me</CustomLink>
                             {
-                                   user ? user.displayName : ''
-                               }
-                               </span>
-                            {
-                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-secondary'>Log Out</button> : <CustomLink className= 'ps-3' to="/login">Log in</CustomLink>
+                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-secondary ms-3'>Log Out</button> : <CustomLink className='ps-3' to="/login">Log in</CustomLink>
                             }
 
-                            <CustomLink className= 'ps-3' to="/signup">Sign Up</CustomLink>
+                            <CustomLink className='ps-3' to="/signup">Sign Up</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

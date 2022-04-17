@@ -35,7 +35,7 @@ const Social = () => {
             <div style={{ height: '1px' }} className='bg-dark w-50'></div>
         </div>
         
-        <p className='text-center fw-bold pb-3 pt-2'>To continue, log in to Genius Car.</p>
+        <p className='text-center fw-bold pb-3 pt-2'>To continue, log in here.</p>
         {errormess}
         <div className='text-center mt-3'>
             <button onClick={() => signInWithGoogle()}  className='btn btn-light border border-secondary rounded-pill w-50'><span className='fs-3'><FcGoogle></FcGoogle></span> <span className='fs-5 text-muted fw-bolder ps-2'>Continue with google</span></button>
@@ -44,7 +44,7 @@ const Social = () => {
             <button onClick={() => signInWithFacebook()} className='btn btn-primary border-0 rounded-pill w-50' ><span className='fs-3'><FaFacebook></FaFacebook></span> <span className='fs-5  text-light fw-bolder ps-2'>Continue with facebook</span></button>
         </div>
         <div className='text-center mt-3'>
-            <button onClick={() => signInWithGithub()}  className='btn btn-dark border border-secondary rounded-pill w-50' ><span className='fs-3'><FaGithub></FaGithub></span> <span className='fs-5 text-lightfw-bolder ps-2'>Continue with github</span></button>
+            <button onClick={() => signInWithGithub()}  className='btn btn-dark border border-secondary rounded-pill w-50' ><span className='fs-3'><FaGithub></FaGithub></span> <span className='fs-5 text-light fw-bolder ps-2'>Continue with github</span></button>
         </div>
         <ToastContainer />
     </div>

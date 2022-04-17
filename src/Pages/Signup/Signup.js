@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Social from '../Social/Social';
 import './Signup.css';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../FirebasInit/Firebase.init';
 import { async } from '@firebase/util';
 import Spinners from '../../Shared/Spinners/Spinners';
@@ -18,6 +18,7 @@ const Signup = () => {
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
+      const [sendEmailVerification, sending, error3] = useSendEmailVerification(auth);
       
       const [updateProfile, updating, error2] = useUpdateProfile(auth);
       const [agree , setAgree] = useState(false);
@@ -26,13 +27,13 @@ const Signup = () => {
       const passwordInput = useRef('');
       const confirmPasswordInput = useRef('');
       let errormess;
-      if (error || error2) {
+      if (error || error2 || error3) {
         return (
             errormess = <p className='text-danger text-center fw-bolder'> Error: {error ? error?.message : 'Something is wrong!'}</p>
           
         );
       }
-      if (loading || updating) {
+      if (loading || updating || sending) {
         return <Spinners></Spinners>;
       }
       const signupSub =async event =>{
@@ -43,9 +44,11 @@ const Signup = () => {
         const confirmpass = confirmPasswordInput.current.value;
         if(password === confirmpass){
             await createUserWithEmailAndPassword(email, password);
+            await sendEmailVerification();
+            toast('Sent email');
             await updateProfile({ displayName: name })
             toast("Signed In");
-            // navigate('/home');
+            
             
         }
 

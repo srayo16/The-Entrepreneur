@@ -7,7 +7,7 @@ const ServicePro = ({ service }) => {
     const [expand, setExpand] = useState(false);
     const navigate = useNavigate();
     const handltogoCheckout = id =>{
-        navigate(`/${id}`)
+        navigate(`/checkout/${id}`);
     }
     return (
         <div className='col'>
@@ -22,7 +22,7 @@ const ServicePro = ({ service }) => {
                 <Card.Text>
                     <small className='fw-bold text-center'>Price/Price-range/Charge: <span className='text-danger'>${price}</span></small>
                 </Card.Text>
-                <Button variant="primary" onClick={() => handltogoCheckout(id)}>Go somewhere</Button>
+                <Button variant="primary" onClick={() => handltogoCheckout(id)}>Go to Checkout</Button>
             </Card.Body>
         </Card>
         </div>
