@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomLink from '../CustomActiveLink/CustomActiveLink';
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -27,17 +28,17 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto d-flex align-items-center">
-                            <Nav.Link as={Link} to={'/home'}>Home</Nav.Link>
-                            <Nav.Link className='text-warning' as={Link} to={'/'}>
+                            <CustomLink className= 'ps-3' to={'/home'}>Home</CustomLink>
+                            <CustomLink className='text-warning ps-3'  to={'/'}>
                             {
                                    user ? user.displayName : ''
                                }
-                               </Nav.Link>
+                               </CustomLink>
                             {
-                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-dark'>Log Out</button> : <Nav.Link  as={Link} to="/login">Log in</Nav.Link>
+                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-dark'>Log Out</button> : <CustomLink className= 'ps-3' to="/login">Log in</CustomLink>
                             }
 
-                            <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+                            <CustomLink className= 'ps-3' to="/signup">Sign Up</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
