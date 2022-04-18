@@ -28,8 +28,6 @@ const Login = () => {
 
         errormess = <p className='text-danger text-center fw-bolder'> Error:  {error?.message}
             {error2?.message} </p>
-
-
     }
 
     if (loading || sending) {
