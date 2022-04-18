@@ -22,7 +22,7 @@ const Social = () => {
     }
     if (user || user2 || user3) {
         navigate(from, { replace: true });
-        // toast('Signed in');
+        toast('Signed in');
         //   navigate('/home');
 
     }

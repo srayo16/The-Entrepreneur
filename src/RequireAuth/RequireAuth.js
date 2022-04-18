@@ -6,7 +6,7 @@ import Spinners from "../Shared/Spinners/Spinners";
 function RequireAuth({ children }) {
     const [user, loading] = useAuthState(auth);
     let location = useLocation();
-    console.log(user);
+    // console.log(user);
     
     if(loading){
       return <Spinners></Spinners>

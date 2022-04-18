@@ -13,7 +13,7 @@ const Header = () => {
     const [user] = useAuthState(auth);
     const handlelogOut = () => {
         signOut(auth).then(() => {
-            toast('Signed Out');
+            toast('Logged Out');
         }).catch((error) => {
             alert(error.message);
         });
@@ -37,7 +37,7 @@ const Header = () => {
                             <CustomLink className='ps-3' to={'/blogs'}>Blogs</CustomLink>
                             <CustomLink className='ps-3' to={'/about'}>About me</CustomLink>
                             {
-                                user ? <button onClick={handlelogOut} className='text-light border-0 rounded-pill bg-secondary ms-3'>Log Out</button> : <CustomLink className='ps-3' to="/login">Log in</CustomLink>
+                                user ? <button onClick={() => handlelogOut()} className='text-light border-0 rounded-pill bg-secondary ms-3'>Log Out</button> : <CustomLink className='ps-3' to="/login">Log in</CustomLink>
                             }
 
                             <CustomLink className='ps-3' to="/signup">Sign Up</CustomLink>

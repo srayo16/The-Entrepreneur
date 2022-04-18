@@ -28,14 +28,17 @@ const Signup = () => {
     const confirmPasswordInput = useRef('');
     let errormess;
     if (error || error2 || error3) {
-        return (
-            errormess = <p className='text-danger text-center fw-bolder'> Error: {error ? error?.message : 'Something is wrong!'}</p>
 
-        );
+        errormess = <p className='text-danger text-center fw-bolder'> Error: {error ? error?.message : 'Something is wrong!'}</p>
+
+
     }
     if (loading || updating || sending) {
         return <Spinners></Spinners>;
     }
+
+    // sign up funtion 
+
     const signupSub = async event => {
         event.preventDefault();
         const name = nameInput.current.value;
@@ -45,11 +48,9 @@ const Signup = () => {
         if (password === confirmpass) {
             await createUserWithEmailAndPassword(email, password);
             await sendEmailVerification();
+            await updateProfile({ displayName: name });
+            toast("Sign In Successful");
             toast('Sent email');
-            await updateProfile({ displayName: name })
-            toast("Signed In");
-
-
         }
 
         else {
@@ -57,7 +58,6 @@ const Signup = () => {
         }
 
     }
-
 
     return (
         <div className='container mt-3'>
@@ -83,11 +83,11 @@ const Signup = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword" required>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control ref={passwordInput} type="password" style={{ height: '50px' }} placeholder="Password" />
+                        <Form.Control ref={passwordInput} type="password" style={{ height: '50px' }} placeholder="Password" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicConfirmPassword" required>
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control ref={confirmPasswordInput} type="password" style={{ height: '50px' }} placeholder="Confirm Password" />
+                        <Form.Control ref={confirmPasswordInput} type="password" style={{ height: '50px' }} placeholder="Confirm Password" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" style={{ color: agree ? 'green' : 'red' }} onClick={() => setAgree(!agree)} name='terms' label="Accepts all terms" />

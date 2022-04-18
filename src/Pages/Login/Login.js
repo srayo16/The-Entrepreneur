@@ -26,17 +26,21 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
     let errormess;
     if (error || error2) {
-        (
-            errormess = <p className='text-danger text-center fw-bolder'> Error:  {error ? error?.message : 'Something is wrong!'}</p>
 
-        );
+        errormess = <p className='text-danger text-center fw-bolder'> Error:  {error ? error?.message : 'Something is wrong!'}</p>
+
+
     }
     if (loading || sending) {
         return <Spinners></Spinners>;
     }
     if (user) {
+
         navigate(from, { replace: true });
     }
+
+    // log in funtion 
+
     const onsubLog = async event => {
         event.preventDefault();
         const email = mail.current.value;
@@ -47,6 +51,9 @@ const Login = () => {
         }
 
     }
+
+    // reset pass funtion 
+
     const resetPass = async event => {
         const email = mail.current.value;
         if (email) {
@@ -73,7 +80,7 @@ const Login = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword" required>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control ref={pass} type="password" style={{ height: '50px' }} placeholder="Password" />
+                        <Form.Control ref={pass} type="password" style={{ height: '50px' }} placeholder="Password" required />
                     </Form.Group>
                     <Button variant="secondary" type="submit" className=' rounded-pill handleSubBtn'>
                         Log in
