@@ -6,20 +6,23 @@ import auth from '../../FirebasInit/Firebase.init';
 import Spinners from '../../Shared/Spinners/Spinners';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Social = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook, user2, loading2, error2] = useSignInWithFacebook(auth);
     const [signInWithGithub, user3, loading3, error3] = useSignInWithGithub(auth);
     const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     let errormess;
     if (error || error2 || error3) {
 
         errormess = <p className='text-danger text-center fw-bolder'> Error: {error ? error?.message : 'Something is wrong!'}</p>
     }
     if (user || user2 || user3) {
-        toast('Signed in');
+        navigate(from, { replace: true });
+        // toast('Signed in');
         //   navigate('/home');
 
     }
