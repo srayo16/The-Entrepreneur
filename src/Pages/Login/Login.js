@@ -16,9 +16,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(
-        auth
-    );
+
+    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(auth);
+
     const navigate = useNavigate();
     const mail = useRef('');
     const pass = useRef('');
@@ -27,15 +27,17 @@ const Login = () => {
     let errormess;
     if (error || error2) {
 
-        errormess = <p className='text-danger text-center fw-bolder'> Error:  {error ? error?.message : 'Something is wrong!'}</p>
+        errormess = <p className='text-danger text-center fw-bolder'> Error:  {error?.message}
+            {error2?.message} </p>
 
 
     }
+
     if (loading || sending) {
         return <Spinners></Spinners>;
     }
     if (user) {
-
+        toast('Logged in');
         navigate(from, { replace: true });
     }
 
@@ -47,22 +49,25 @@ const Login = () => {
         const password = pass.current.value;
         if (email && password) {
             await signInWithEmailAndPassword(email, password);
-            toast('Logged in');
+
         }
 
     }
 
     // reset pass funtion 
 
-    const resetPass = async event => {
+    const resetPass = async () => {
         const email = mail.current.value;
-        if (email) {
+
+        if (email && !error2) {
             await sendPasswordResetEmail(email);
             toast('Sent email');
+
         }
         else {
-            alert('Email field empty!')
+            alert('Email field empty!');
         }
+
 
     }
     return (
