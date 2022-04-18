@@ -16,4 +16,4 @@ Live website link [The Entrepreneur](https://sohag-s-service.web.app/).
 
 * ৪০৪ কার্যকর।
 
-## a list of technologies (frameworks, libraries) which is used in this project: 1. React , 2. Bootstrap , 3. React-router , 4. firebase etc.
+### A list of technologies (frameworks, libraries) which is used in this project: 1. React , 2. Bootstrap , 3. React-router , 4. firebase etc.
