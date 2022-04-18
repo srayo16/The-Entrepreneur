@@ -13,7 +13,7 @@ const FirstSection = () => {
     return (
         <div className='container d-flex justify-content-center align-items-center mt-5 pt-5 handleFirstParent'>
             <div className='w-75 pe-5' >
-                <h1 className=''>The Life Stroy of<br /><span className='text-danger'>Mahmudul Hasan Sohag</span></h1>
+                <h1>The Life Stroy of<br /><span className='text-danger'>Mahmudul Hasan Sohag</span></h1>
                 {
                     description.map(item => <p item ={item} key={item.id} className='pt-3'> 
                     {!expand &&  item.description.slice(0,1000) + '...'} {!expand && <button className='btn btn-light fw-bold text-primary m-0 p-0' onClick={() => setExpand(true)}>Read more</button>}
