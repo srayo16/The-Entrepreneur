@@ -34,7 +34,7 @@ const Service = () => {
 
     return (
         <div className='container px-4 mt-5 mb-5 pb-5'>
-            <h1 className='text-center mt-5'>Our Services</h1><hr className='mb-5' />
+            <h1 className='text-center mt-5'>His Services</h1><hr className='mb-5' />
             <div className='row gx-5 gy-5 mx-auto'>
                 {
                     serviceProvider.map(service => <ServicePro key={service.id} service={service}></ServicePro>)
